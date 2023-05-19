@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "../../componets/Header";
 import { Title } from "../../componets/Title";
-import { CardData } from "../../componets/CardData";
+import { Card } from "../../componets/Card";
 
 export const Home = () => {
   const [data, setData] = useState([]);
@@ -12,7 +12,7 @@ export const Home = () => {
 
   const fetchData = async () => {
     try {
-const response = await fetch("http://api.tvmaze.com"); 
+      const response = await fetch("http://api.tvmaze.com/shows");
       const data = await response.json();
       setData(data);
     } catch (error) {
@@ -22,9 +22,18 @@ const response = await fetch("http://api.tvmaze.com");
 
   return (
     <div>
-      <Header/>
+      <Header />
       <Title text="Hello" />
-      <CardData data={data} />
+      {data.map((card: any, index) => (
+        <Card
+          id={card.id}
+          key={index}
+          imageSrc={card.image.medium}
+          title={card.name}
+          premiered={card.premiered}
+          rating={card.rating.average}
+        />
+      ))}
     </div>
   );
 };

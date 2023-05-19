@@ -1,16 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import { Link } from "../Link";
 
 type CardProps = {
+  id: number;
   imageSrc: string;
   title: string;
   premiered: string;
   rating: number;
 };
-const handleClick = () => {
-  console.log("Card clicked!");
-};
+
 
 export const Card = (props: CardProps) => {
+  const navigation = useNavigate();
+
+  const handleClick = () => {
+    navigation("/details/" + props.id);
+    };
   return (
     <div className="bg-white rounded-lg shadow-md p-4 mb-4">
       <img src={props.imageSrc} alt="" className="mb-2" />
