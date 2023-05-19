@@ -24,8 +24,9 @@ export const Home = () => {
     <div>
       <Header />
       <Title text="Hello" />
+      <div className="flex justify-center flex-wrap">
       {data.map((card: any, index) => (
-        <Card
+        <Card 
           id={card.id}
           key={index}
           imageSrc={card.image.medium}
@@ -34,6 +35,8 @@ export const Home = () => {
           rating={card.rating.average}
         />
       ))}
+      </div>
+      
     </div>
   );
 };
